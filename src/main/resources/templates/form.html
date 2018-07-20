@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head" />
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<form th:action="@{/form}" th:object="${cliente}" method="post">
+					<div class="form-group row">
+						<label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{nombre}" class="form-control"
+								id="inputNombre" placeholder="Nombre..." /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="inputApellido" class="col-sm-2 col-form-label">Apellido</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{apellido}" class="form-control"
+								id="inputApellido" placeholder="Apellido..." /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+						<div class="col-sm-8">
+							<input type="email" th:field="*{email}" class="form-control"
+								id="inputEmail" placeholder="Email..." /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="inputFecha" class="col-sm-2 col-form-label">Fecha</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{fecha}" class="form-control"
+								id="inputFecha" placeholder="Fecha(yyyy-MM-dd)" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}"></small>
+						</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-success">Guardar</button>
+						</div>
+					</div>
+					<input type="hidden" th:field="*{id}" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

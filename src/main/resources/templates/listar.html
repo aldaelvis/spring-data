@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<a th:href="@{/form}" class="btn btn-primary">Nuevo</a>
+				<table class="table">
+					<tr>
+						<th>#</th>
+						<th>Nombre</th>
+						<th>Apellido</th>
+						<th>Email</th>
+						<th>Fecha</th>
+						<th>Crear Factura</th>
+						<th>Opciones</th>
+					</tr>
+					<tr th:each="items : ${clientes}">
+						<td><a class="btn btn-primary" th:href="@{/ver/} + ${items.id}" th:text="${items.id}"></a></td>
+						<td th:text="${items.nombre}"></td>
+						<td th:text="${items.apellido}"></td>
+						<td th:text="${items.email}"></td>
+						<td th:text="${items.fecha}"></td>
+						<td><a th:href="@{/factura/form/} + ${items.id}">Factura</a></td>
+						<td><a th:href="@{/form/} + ${items.id}">Editar</a> | <a
+							th:href="@{/eliminar/} + ${items.id}"
+							onclick="return confirm('Estas Seguro que deseas Eliminar');">Eliminar</a>
+						</td>
+					</tr>
+				</table>
+				<nav th:replace="page-nav :: paginator"></nav>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
